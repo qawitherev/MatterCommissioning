@@ -47,5 +47,17 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera to scan qr</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Need bluetooth for commission</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Need access to local network, don&apos;t ask why</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_matter._tcp</string>
+		<string>_matterc._udp</string>
+		<string>_matterd._udp</string>
+	</array>
 </dict>
 </plist>
