@@ -124,8 +124,8 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
          */
         let c = InitializeMTR()
         let prm = MTRCommissioningParameters()
-        prm.wifiSSID = ssid.data(using: .utf8)
-        prm.wifiCredentials = pwd.data(using: .utf8)
+//        prm.wifiSSID = ssid.data(using: .utf8)
+//        prm.wifiCredentials = pwd.data(using: .utf8)
         prm.deviceAttestationDelegate = AttestDelegate()
         prm.failSafeTimeout = 60
         let dId = MTRGetNextAvailableDeviceID() - 1

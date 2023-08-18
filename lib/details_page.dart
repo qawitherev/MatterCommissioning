@@ -53,13 +53,21 @@ class DetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-            Center(
-                child: ElevatedButton(
-                    onPressed: () => c.sCommission(),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("Start Commission"),
-                    )))
+            Column(
+              children: [
+                Center(
+                    child: ElevatedButton(
+                        onPressed: () => c.sCommission(),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text("Start Commission"),
+                        ))),
+                HomePage.verS10,
+                Text("OR", style: HomePage.tStyle2,),
+                HomePage.verS10,
+                ElevatedButton(onPressed: () => c.mSupport(), child: const Text("Use Matter Support"))
+              ],
+            )
           ],
         ),
       ),
@@ -91,8 +99,16 @@ class DetailsController extends GetxController {
 
   final appbar = "Device Details";
 
-  void sCommission() {
+  Future<void> sCommission() async {
     Get.to(() => CommissionPage(qrString: qrString, manualCode: manualCode));
+  }
+
+  Future<void> mSupport() async {
+    try {
+      await platform.invokeMethod("mSupport");
+    } on PlatformException catch (e) {
+      print("mSupport() errored: ${e.message}");
+    }
   }
 
   Future<void> performCalculation() async {
