@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:commission_mtr2/constants.dart';
 import 'package:commission_mtr2/home_page.dart';
+import 'package:commission_mtr2/utils/timeout_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -10,7 +13,7 @@ class CommissionPage extends StatelessWidget {
 
   CommissionPage({Key? key, this.qrString, this.manualCode})
       : c = Get.put(
-      CommissionController(qrString: qrString, manualCode: manualCode)),
+            CommissionController(qrString: qrString, manualCode: manualCode)),
         super(key: key);
 
   @override
@@ -24,8 +27,10 @@ class CommissionPage extends StatelessWidget {
           return _loading();
         } else if (c.pageState.value == 1) {
           return _success();
-        } else {
+        } else if (c.pageState.value == 2) {
           return _error();
+        } else {
+          return _timeout();
         }
       }),
     );
@@ -53,8 +58,11 @@ class CommissionPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Text("Error while commissioning, please see log",
-            style: HomePage.tStyle2, textAlign: TextAlign.center,)
+          Text(
+            "Error while commissioning, please see log",
+            style: HomePage.tStyle2,
+            textAlign: TextAlign.center,
+          )
         ],
       ),
     );
@@ -65,7 +73,26 @@ class CommissionPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Text("Successfully commissioned device", style: HomePage.tStyle2, textAlign: TextAlign.center,),
+          Text(
+            "Successfully commissioned device",
+            style: HomePage.tStyle2,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+
+  _timeout() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Text(
+            "Operation timed out, please try again",
+            style: HomePage.tStyle2,
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );
@@ -75,22 +102,23 @@ class CommissionPage extends StatelessWidget {
 class CommissionController extends GetxController {
   final String? qrString, manualCode;
   final appbar = "Commission Device";
-  final waitTime = const Duration(seconds: 2);
+  final delayTime = const Duration(seconds: 2);
   final isCommissioned = false.obs;
-  final pageState = 0.obs; // --> 0 loading, 1 success, 2 error
+  final pageState = 0.obs; // --> 0 loading, 1 success, 2 error, 3 timeout
+  final waitingResTime = const Duration(minutes: 2);
 
   CommissionController({this.qrString, this.manualCode});
 
   @override
   void onInit() async {
     super.onInit();
-    await Future.delayed(waitTime);
+    await Future.delayed(delayTime);
     await startCommission();
   }
 
   Future<void> startCommission() async {
     try {
-      final cResult = await platform.invokeMethod("startCms", qrString);
+      final cResult = await platform.invokeMethod("startCms", qrString).timeout(waitingResTime);
       if (cResult == "OK") {
         pageState.value = 1;
       } else if (cResult == "FAILED") {
@@ -98,6 +126,8 @@ class CommissionController extends GetxController {
       }
     } on PlatformException catch (e) {
       print("Start commission failed: ${e.message}");
+    } on TimeoutException catch (_) {
+      pageState.value = 3;
     }
   }
 }
