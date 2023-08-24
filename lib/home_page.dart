@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
+import 'constants.dart';
 import 'details_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -90,8 +92,14 @@ class HomePage extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(onPressed: () => c.pairManual(),
-                    child: const Text("Commission using Manual Code")),
+                child: Column(
+                  children: [
+                    ElevatedButton(onPressed: () => c.pairManual(),
+                        child: const Text("Commission using Manual Code")),
+                    verS10,
+                    // ElevatedButton(onPressed: () => c.mSupport(), child: const Text("Matter Support"))
+                  ],
+                ),
               )
             ],
           ),
@@ -128,4 +136,12 @@ class HomeController extends GetxController {
     sController.stop();
     Get.to(() => DetailsPage(manualCode: manualCode,));
   }
+
+  // Future<void> mSupport() async {
+  //   try {
+  //     await platform.invokeMethod("mSupport");
+  //   } on PlatformException catch (e) {
+  //     print("mSupport() errored: ${e.message}");
+  //   }
+  // }
 }

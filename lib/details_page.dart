@@ -40,12 +40,12 @@ class DetailsPage extends StatelessWidget {
                     HomePage.verS15,
                     Obx(() {
                       return Text(
-                        "Discriminator: ${c.deets.value.discriminator}\n"
-                            "Product ID: ${c.deets.value.prodId}\n"
-                            "Serial Number: ${c.deets.value.serNum}\n"
-                            "Setup Code: ${c.deets.value.setupPCode}\n"
-                            "Vendor ID: ${c.deets.value.vendId}\n"
-                            "Version: ${c.deets.value.vers}",
+                        "Discriminator: ${c.details.value.discriminator}\n"
+                            "Product ID: ${c.details.value.prodId}\n"
+                            "Serial Number: ${c.details.value.serNum}\n"
+                            "Setup Code: ${c.details.value.setupPCode}\n"
+                            "Vendor ID: ${c.details.value.vendId}\n"
+                            "Version: ${c.details.value.vers}",
                         style: const TextStyle(fontSize: 20),
                       );
                     }),
@@ -65,7 +65,9 @@ class DetailsPage extends StatelessWidget {
                 HomePage.verS10,
                 Text("OR", style: HomePage.tStyle2,),
                 HomePage.verS10,
-                ElevatedButton(onPressed: () => c.mSupport(), child: const Text("Use Matter Support"))
+                ElevatedButton(onPressed: () => c.mSupport(), child: const Text("Use Matter Support")),
+                HomePage.verS10,
+                ElevatedButton(onPressed: () => c.commissionSupport(), child: const Text("Commission Support")),
               ],
             )
           ],
@@ -80,7 +82,7 @@ class DetailsController extends GetxController {
   final scannedEnter = ''.obs;
   final Rx<int> pSum = 0.obs;
   final vId = 0.obs;
-  final Rx<DevicePayloadDetails> deets = DevicePayloadDetails(
+  final Rx<DevicePayloadDetails> details = DevicePayloadDetails(
       discriminator: 0,
       prodId: 0,
       serNum: "",
@@ -125,10 +127,21 @@ class DetailsController extends GetxController {
       final res = await platform.invokeMethod("parseAll", qrString);
       if (res != null) {
         Map<String, dynamic> jsonMap = jsonDecode(res);
-        deets.value = DevicePayloadDetails.fromJson(jsonMap);
+        details.value = DevicePayloadDetails.fromJson(jsonMap);
       }
     } on PlatformException catch (e) {
       print("Failed with error: ${e.message}");
+    }
+  }
+
+  Future<void> commissionSupport() async {
+    try {
+      final res = await platform.invokeMethod("commissionSupport", qrString);
+      if (res == "OK") {
+        print("Device is commissioned");
+      }
+    } on PlatformException catch (e) {
+      print("commissionSupport failed");
     }
   }
 }

@@ -21,6 +21,9 @@ import Matter
                 self?.startCms(qrString!, result: result)
             case "mSupport":
                 self?.mSupport(result: result)
+            case "commissionSupport":
+                let qrString = call.arguments as? String
+                self?.commissionSupport(qrString!, result)
             default:
                 result(FlutterMethodNotImplemented)
             }
@@ -60,5 +63,9 @@ import Matter
     
     func mSupport(result: @escaping FlutterResult) {
         let m = MSupport(home: "Qawi Home")
+    }
+    
+    func commissionSupport(_ qrString: String, _ result: @escaping FlutterResult) {
+        let helper = CommissionHelperNoWifi(qrString: qrString, fr: result)
     }
 }

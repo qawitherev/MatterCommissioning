@@ -1,8 +1,8 @@
 //
 //  DefaultUtils.m
-//  Runner
+//  MatterExtension
 //
-//  Created by adt-qawi on 17/08/2023.
+//  Created by adt-qawi on 21/08/2023.
 //
 
 #import "DefaultUtils.h"
@@ -57,7 +57,7 @@ void MTRSetNextAvailableDeviceID(uint64_t id)
 
 static CHIPToolPersistentStorageDelegate * storage = nil;
 
-static uint16_t kTestVendorId = 0xFFF2;
+static uint16_t kTestVendorId = 0xFFF1u;
 
 static MTRDeviceController * sController = nil;
 
@@ -220,3 +220,4 @@ void MTRUnpairDeviceWithID(uint64_t deviceId)
 }
 
 @end
+

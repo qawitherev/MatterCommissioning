@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -24,6 +26,20 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Need bluetooth for commission</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_matter._tcp</string>
+		<string>_matterc._udp</string>
+		<string>_matterd._udp</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Need camera to scan qr</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Need access to local network, don't ask why</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -43,21 +59,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>Need camera to scan qr</string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Need bluetooth for commission</string>
-	<key>NSLocalNetworkUsageDescription</key>
-	<string>Need access to local network, don&apos;t ask why</string>
-	<key>NSBonjourServices</key>
-	<array>
-		<string>_matter._tcp</string>
-		<string>_matterc._udp</string>
-		<string>_matterd._udp</string>
-	</array>
 </dict>
 </plist>

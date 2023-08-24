@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:commission_mtr2/constants.dart';
 import 'package:commission_mtr2/home_page.dart';
-import 'package:commission_mtr2/utils/timeout_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -105,7 +104,7 @@ class CommissionController extends GetxController {
   final delayTime = const Duration(seconds: 2);
   final isCommissioned = false.obs;
   final pageState = 0.obs; // --> 0 loading, 1 success, 2 error, 3 timeout
-  final waitingResTime = const Duration(minutes: 2);
+  final waitingResTime = const Duration(minutes: 1);
 
   CommissionController({this.qrString, this.manualCode});
 

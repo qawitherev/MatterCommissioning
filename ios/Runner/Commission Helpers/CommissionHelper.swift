@@ -85,7 +85,7 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
          */
         
         let c = InitializeMTR()
-        let dId = MTRGetLastPairedDeviceId()
+        _ = MTRGetLastPairedDeviceId()
         do {
             let d = try c?.deviceBeingCommissioned(withNodeID: 12)
             if (d?.sessionTransportType == .BLE) {
@@ -102,7 +102,13 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
     }
     
     func controller(_ controller: MTRDeviceController, commissioningComplete error: Error?) {
+        if (error != nil) {
+            print("QAWI0 - Error with \(String(describing: error))")
+            return
+        }
+        print("QAWI1 - Commissioning complete")
         let cId = controller.controllerNodeID
+        fr("OK")
         do {
             let d = try controller.deviceBeingCommissioned(withNodeID: 12)
             print("QAWI3 - commissioningComplete, controller node id is \(String(describing: cId))")
@@ -124,13 +130,12 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
          */
         let c = InitializeMTR()
         let prm = MTRCommissioningParameters()
-//        prm.wifiSSID = ssid.data(using: .utf8)
-//        prm.wifiCredentials = pwd.data(using: .utf8)
+        prm.wifiSSID = ssid.data(using: .utf8)
+        prm.wifiCredentials = pwd.data(using: .utf8)
         prm.deviceAttestationDelegate = AttestDelegate()
         prm.failSafeTimeout = 60
-        let dId = MTRGetNextAvailableDeviceID() - 1
         do {
-            try c?.commissionDevice(12, commissioningParams: prm)
+            try c?.commissionNode(withID: 12, commissioningParams: prm)
         } catch {
             print("QAWI0 - Failed commission device")
         }
@@ -146,7 +151,7 @@ class AttestDelegate: NSObject, MTRDeviceAttestationDelegate {
     func deviceAttestationFailed(for controller: MTRDeviceController, opaqueDeviceHandle: UnsafeMutableRawPointer, error: Error) {
         print("QAWI - Device attestation failed with error: \(error)")
         let mController = InitializeMTR()
-        var shouldContinue = true //--> get from user, prolly a prompt
+        let shouldContinue = true //--> get from user, prolly a prompt
         if (shouldContinue) {
             do {
                 try mController?.continueCommissioningDevice(opaqueDeviceHandle, ignoreAttestationFailure: true)

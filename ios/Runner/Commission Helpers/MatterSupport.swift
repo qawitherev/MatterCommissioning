@@ -38,8 +38,9 @@ class MSupport {
                  MatterAddDeviceRequest.Home(displayName: dH2),
                  MatterAddDeviceRequest.Home(displayName: dH3)]
         topology = MatterAddDeviceRequest.Topology(ecosystemName: ecosystem, homes: homes!)
-        req = MatterAddDeviceRequest(topology: topology!, shouldScanNetworks: false)
+        req = MatterAddDeviceRequest(topology: topology!)
         do {
+            print("QAWI3 - request.perform()")
             try await req?.perform()
         } catch {
             print("QAWI0 - failed to perform()")

@@ -21,6 +21,10 @@
 		F419D9692A8F5C230016396C /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419D9682A8F5C230016396C /* RequestHandler.swift */; };
 		F419D96D2A8F5C230016396C /* MatterExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F419D9662A8F5C230016396C /* MatterExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F419D9742A8F5C4A0016396C /* MatterSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419D9732A8F5C4A0016396C /* MatterSupport.swift */; };
+		F419D9762A8F63350016396C /* MHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419D9752A8F63350016396C /* MHelper.swift */; };
+		F419D9852A9310570016396C /* DefaultUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F419D9842A9310570016396C /* DefaultUtils.m */; };
+		F419D9892A9311460016396C /* FabricKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = F419D9882A9311460016396C /* FabricKeys.m */; };
+		F419D98C2A95E5BA0016396C /* CommissionHelperNoWifi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419D98B2A95E5BA0016396C /* CommissionHelperNoWifi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +90,14 @@
 		F419D9682A8F5C230016396C /* RequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		F419D96A2A8F5C230016396C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F419D9732A8F5C4A0016396C /* MatterSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatterSupport.swift; sourceTree = "<group>"; };
+		F419D9752A8F63350016396C /* MHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MHelper.swift; sourceTree = "<group>"; };
+		F419D9822A930EF70016396C /* BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgeHeader.h; sourceTree = "<group>"; };
+		F419D9832A93103C0016396C /* DefaultUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultUtils.h; sourceTree = "<group>"; };
+		F419D9842A9310570016396C /* DefaultUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultUtils.m; sourceTree = "<group>"; };
+		F419D9872A9311310016396C /* FabricKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FabricKeys.h; sourceTree = "<group>"; };
+		F419D9882A9311460016396C /* FabricKeys.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FabricKeys.m; sourceTree = "<group>"; };
+		F419D98A2A9439050016396C /* MatterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MatterExtension.entitlements; sourceTree = "<group>"; };
+		F419D98B2A95E5BA0016396C /* CommissionHelperNoWifi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommissionHelperNoWifi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +205,7 @@
 			children = (
 				F419D93B2A8DBDEB0016396C /* CommissionHelper.swift */,
 				F419D9732A8F5C4A0016396C /* MatterSupport.swift */,
+				F419D98B2A95E5BA0016396C /* CommissionHelperNoWifi.swift */,
 			);
 			path = "Commission Helpers";
 			sourceTree = "<group>";
@@ -200,10 +213,25 @@
 		F419D9672A8F5C230016396C /* MatterExtension */ = {
 			isa = PBXGroup;
 			children = (
+				F419D98A2A9439050016396C /* MatterExtension.entitlements */,
+				F419D9812A930EDC0016396C /* ObjC */,
 				F419D9682A8F5C230016396C /* RequestHandler.swift */,
 				F419D96A2A8F5C230016396C /* Info.plist */,
+				F419D9752A8F63350016396C /* MHelper.swift */,
 			);
 			path = MatterExtension;
+			sourceTree = "<group>";
+		};
+		F419D9812A930EDC0016396C /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				F419D9822A930EF70016396C /* BridgeHeader.h */,
+				F419D9832A93103C0016396C /* DefaultUtils.h */,
+				F419D9842A9310570016396C /* DefaultUtils.m */,
+				F419D9872A9311310016396C /* FabricKeys.h */,
+				F419D9882A9311460016396C /* FabricKeys.m */,
+			);
+			path = ObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +419,7 @@
 				F419D9362A8DBCC10016396C /* DefaultUtils.m in Sources */,
 				F419D9392A8DBCF70016396C /* FabricKeys.m in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
+				F419D98C2A95E5BA0016396C /* CommissionHelperNoWifi.swift in Sources */,
 				F419D93C2A8DBDEB0016396C /* CommissionHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +428,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F419D9762A8F63350016396C /* MHelper.swift in Sources */,
+				F419D9852A9310570016396C /* DefaultUtils.m in Sources */,
+				F419D9892A9311460016396C /* FabricKeys.m in Sources */,
 				F419D9692A8F5C230016396C /* RequestHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,8 +523,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49K67C5Q8H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 49K67C5Q8H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -500,8 +536,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.commissionMtr2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airdroitech.commissionMtr2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Matter Onboarding Prototype";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -623,8 +661,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49K67C5Q8H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 49K67C5Q8H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -632,8 +674,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.commissionMtr2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airdroitech.commissionMtr2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Matter Onboarding Prototype";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -649,8 +693,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = 49K67C5Q8H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 49K67C5Q8H;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -658,8 +706,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.commissionMtr2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airdroitech.commissionMtr2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Matter Onboarding Prototype";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -675,9 +725,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = MatterExtension/MatterExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 49K67C5Q8H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 49K67C5Q8H;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MatterExtension/Info.plist;
@@ -692,11 +746,14 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.commissionMtr2.MatterExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airdroitech.commissionMtr2.MatterExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Matter Onboarding Prototype Extension";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/soonthooleong/StudioProjects/commission_mtr2/ios/MatterExtension/ObjC/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -712,9 +769,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = MatterExtension/MatterExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 49K67C5Q8H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 49K67C5Q8H;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MatterExtension/Info.plist;
@@ -728,10 +789,13 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.commissionMtr2.MatterExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airdroitech.commissionMtr2.MatterExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Matter Onboarding Prototype Extension";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/soonthooleong/StudioProjects/commission_mtr2/ios/MatterExtension/ObjC/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -746,9 +810,13 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = MatterExtension/MatterExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 49K67C5Q8H;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 49K67C5Q8H;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MatterExtension/Info.plist;
@@ -762,10 +830,13 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.commissionMtr2.MatterExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airdroitech.commissionMtr2.MatterExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Matter Onboarding Prototype Extension";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/soonthooleong/StudioProjects/commission_mtr2/ios/MatterExtension/ObjC/BridgeHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
