@@ -4,6 +4,7 @@ import 'package:commission_mtr2/commission_page.dart';
 import 'package:commission_mtr2/constants.dart';
 import 'package:commission_mtr2/home_page.dart';
 import 'package:commission_mtr2/model/device_payload_details.dart';
+import 'package:commission_mtr2/support_commissioned.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -66,8 +67,6 @@ class DetailsPage extends StatelessWidget {
                 Text("OR", style: HomePage.tStyle2,),
                 HomePage.verS10,
                 ElevatedButton(onPressed: () => c.mSupport(), child: const Text("Use Matter Support")),
-                HomePage.verS10,
-                ElevatedButton(onPressed: () => c.commissionSupport(), child: const Text("Commission Support")),
               ],
             )
           ],
@@ -107,18 +106,12 @@ class DetailsController extends GetxController {
 
   Future<void> mSupport() async {
     try {
-      await platform.invokeMethod("mSupport");
+      final res = await platform.invokeMethod("mSupport");
+      if (res == "OK") {
+        Get.to(() => SupportCommissionedPage());
+      }
     } on PlatformException catch (e) {
       print("mSupport() errored: ${e.message}");
-    }
-  }
-
-  Future<void> performCalculation() async {
-    try {
-      final int sum = await platform.invokeMethod("add", {"a": 1, "b": 2});
-      pSum.value = sum;
-    } on PlatformException catch (e) {
-      print("Cannot do method channel. $e");
     }
   }
 
@@ -134,14 +127,4 @@ class DetailsController extends GetxController {
     }
   }
 
-  Future<void> commissionSupport() async {
-    try {
-      final res = await platform.invokeMethod("commissionSupport", qrString);
-      if (res == "OK") {
-        print("Device is commissioned");
-      }
-    } on PlatformException catch (e) {
-      print("commissionSupport failed");
-    }
-  }
 }

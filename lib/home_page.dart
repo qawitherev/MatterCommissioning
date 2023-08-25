@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 import 'constants.dart';
@@ -57,24 +58,22 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       verS10,
-                      Text(
+                      const Text(
                         "Scan QR code on your Matter device",
                         style: tStyle2,
                         textAlign: TextAlign.center,
                       ),
                       verS15,
-                      Text(
+                      const Text(
                         "OR",
                         style: tStyle1,
                       ),
                       verS15,
-                      Text(
+                      const Text(
                         "Enter manual pairing code that can be found along with the QR code provided",
                         style: tStyle2,
                         textAlign: TextAlign.center,
                       ),
-                      verS10,
-                      verS10,
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextField(

@@ -9,6 +9,8 @@ import MatterSupport
 import os
 
 let logger = Logger(subsystem: "com.airdroitech.commissionMtr2", category: "MatterExtension")
+let appGroupName = "group.com.airdroitech.commissionMtr2"
+let payloadKey = "com.aidroitech.commissionMtr2/payloadKey"
 
 // The extension is launched in response to `MatterAddDeviceRequest.perform()` and this class is the entry point
 // for the extension operations.
@@ -41,7 +43,15 @@ class RequestHandler: MatterAddDeviceExtensionRequestHandler {
         // Use this function to commission the device with your Matter stack.
         
         logger.log("QAWI3 - Starting commissioning flow")
-        MHelper(payloadString: onboardingPayload)
+        
+//        let _ = MHelper(payloadString: onboardingPayload)
+        
+        //--> to "pass" data between extension and host app, we use app group, for now, there is no simple way to share data
+        let sharedDefaults = UserDefaults(suiteName: appGroupName)
+        sharedDefaults?.set(onboardingPayload, forKey: payloadKey)
+        sharedDefaults?.synchronize()
+        
+        //TODO: to use the NSExtensionContext
     }
 
     override func rooms(in home: MatterAddDeviceRequest.Home?) async -> [MatterAddDeviceRequest.Room] {

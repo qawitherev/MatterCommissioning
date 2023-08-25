@@ -73,6 +73,9 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
     
     func controller(_ controller: MTRDeviceController, commissioningComplete error: Error?) {
         print("QAWI3 - Commissioning Complete")
+        let _ = MTRBaseDevice(nodeID: newNodeId, controller: c!)
+        let extensionCtx = NSExtensionContext()
+        extensionCtx.completeRequest(returningItems: [])
     }
     
     func startCommissionWithParams() {
