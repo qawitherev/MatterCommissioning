@@ -49,7 +49,7 @@ class MSupport {
             print("QAWI3 - request.perform()")
             try await req?.perform()
             print("QAWI3 - Extension Complete")
-            let exContext = NSExtensionContext()
+//            let exContext = NSExtensionContext()
 //            if let item = exContext.inputItems.first as? NSExtensionItem,
 //            let itemProvider = item.attachments?.first,
 //            itemProvider.hasItemConformingToTypeIdentifier(kUTTypePlainText as String) {
@@ -67,8 +67,9 @@ class MSupport {
             let sharedDefaults = UserDefaults(suiteName: appGroupName)
             let data = sharedDefaults?.object(forKey: payloadKey) as? String
             print("QAWI3 - onboardingPayload is \(data)")
-//            result("OK")
+            SupportCommissionHelper(payloadString: data!, fr: result)
         } catch {
+            result(FlutterError(code: failedCode, message: failedResult, details: nil))
             print("QAWI0 - failed to perform()")
         }
     }

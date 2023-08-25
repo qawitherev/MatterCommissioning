@@ -50,7 +50,8 @@ class RequestHandler: MatterAddDeviceExtensionRequestHandler {
         let sharedDefaults = UserDefaults(suiteName: appGroupName)
         sharedDefaults?.set(onboardingPayload, forKey: payloadKey)
         sharedDefaults?.synchronize()
-        
+        let extensionCtx = NSExtensionContext()
+        extensionCtx.completeRequest(returningItems: nil)
         //TODO: to use the NSExtensionContext
     }
 

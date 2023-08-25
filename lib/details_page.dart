@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:commission_mtr2/commission_failed.dart';
 import 'package:commission_mtr2/commission_page.dart';
 import 'package:commission_mtr2/constants.dart';
 import 'package:commission_mtr2/home_page.dart';
@@ -15,7 +16,7 @@ class DetailsPage extends StatelessWidget {
 
   DetailsPage({Key? key, this.qrString, this.manualCode})
       : c = Get.put(
-      DetailsController(qrString: qrString, manualCode: manualCode)),
+            DetailsController(qrString: qrString, manualCode: manualCode)),
         super(key: key);
 
   @override
@@ -42,11 +43,11 @@ class DetailsPage extends StatelessWidget {
                     Obx(() {
                       return Text(
                         "Discriminator: ${c.details.value.discriminator}\n"
-                            "Product ID: ${c.details.value.prodId}\n"
-                            "Serial Number: ${c.details.value.serNum}\n"
-                            "Setup Code: ${c.details.value.setupPCode}\n"
-                            "Vendor ID: ${c.details.value.vendId}\n"
-                            "Version: ${c.details.value.vers}",
+                        "Product ID: ${c.details.value.prodId}\n"
+                        "Serial Number: ${c.details.value.serNum}\n"
+                        "Setup Code: ${c.details.value.setupPCode}\n"
+                        "Vendor ID: ${c.details.value.vendId}\n"
+                        "Version: ${c.details.value.vers}",
                         style: const TextStyle(fontSize: 20),
                       );
                     }),
@@ -64,9 +65,14 @@ class DetailsPage extends StatelessWidget {
                           child: Text("Start Commission"),
                         ))),
                 HomePage.verS10,
-                Text("OR", style: HomePage.tStyle2,),
+                Text(
+                  "OR",
+                  style: HomePage.tStyle2,
+                ),
                 HomePage.verS10,
-                ElevatedButton(onPressed: () => c.mSupport(), child: const Text("Use Matter Support")),
+                ElevatedButton(
+                    onPressed: () => c.mSupport(),
+                    child: const Text("Use Matter Support")),
               ],
             )
           ],
@@ -82,12 +88,12 @@ class DetailsController extends GetxController {
   final Rx<int> pSum = 0.obs;
   final vId = 0.obs;
   final Rx<DevicePayloadDetails> details = DevicePayloadDetails(
-      discriminator: 0,
-      prodId: 0,
-      serNum: "",
-      setupPCode: 0,
-      vendId: 0,
-      vers: 0)
+          discriminator: 0,
+          prodId: 0,
+          serNum: "",
+          setupPCode: 0,
+          vendId: 0,
+          vers: 0)
       .obs;
 
   DetailsController({this.qrString, this.manualCode});
@@ -104,16 +110,7 @@ class DetailsController extends GetxController {
     Get.to(() => CommissionPage(qrString: qrString, manualCode: manualCode));
   }
 
-  Future<void> mSupport() async {
-    try {
-      final res = await platform.invokeMethod("mSupport");
-      if (res == "OK") {
-        Get.to(() => SupportCommissionedPage());
-      }
-    } on PlatformException catch (e) {
-      print("mSupport() errored: ${e.message}");
-    }
-  }
+  Future<void> mSupport() async => Get.to(() => SupportCommissionedPage());
 
   Future<void> parseAll() async {
     try {
@@ -126,5 +123,4 @@ class DetailsController extends GetxController {
       print("Failed with error: ${e.message}");
     }
   }
-
 }

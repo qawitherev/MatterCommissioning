@@ -12,7 +12,6 @@ class CommissionHelper {
     var c: MTRDeviceController?
     var qrString: String?
     var fr: FlutterResult
-    let callbackQueue = DispatchQueue(label: "com.csa.matter.qrcodevc.callback")
     init(qrString: String, fr: @escaping FlutterResult) {
         self.fr = fr
         c = InitializeMTR()
@@ -48,7 +47,7 @@ class CommissionHelper {
              given the payload
              and notify the controller's delegate
              */
-            try c?.setupCommissioningSession(with: pl, newNodeID: 12)
+            try c?.setupCommissioningSession(with: pl, newNodeID: newNodeId)
         } catch {
             print("QAWI0 - rendezvousDefault() failed")
         }
@@ -87,7 +86,7 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
         let c = InitializeMTR()
         _ = MTRGetLastPairedDeviceId()
         do {
-            let d = try c?.deviceBeingCommissioned(withNodeID: 12)
+            let d = try c?.deviceBeingCommissioned(withNodeID: newNodeId)
             if (d?.sessionTransportType == .BLE) {
                 print("QAWI3 - transport type is BLE")
                 let ssid = "airdroitech"
@@ -110,7 +109,7 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
         let cId = controller.controllerNodeID
         fr("OK")
         do {
-            let d = try controller.deviceBeingCommissioned(withNodeID: 12)
+            let d = try controller.deviceBeingCommissioned(withNodeID: newNodeId)
             print("QAWI3 - commissioningComplete, controller node id is \(String(describing: cId))")
             print("QAWI3 - Base device session transport type \(d.sessionTransportType)")
         } catch {
@@ -135,7 +134,7 @@ class ControllerDelegate: NSObject, MTRDeviceControllerDelegate {
         prm.deviceAttestationDelegate = AttestDelegate()
         prm.failSafeTimeout = 60
         do {
-            try c?.commissionNode(withID: 12, commissioningParams: prm)
+            try c?.commissionNode(withID: newNodeId, commissioningParams: prm)
         } catch {
             print("QAWI0 - Failed commission device")
         }

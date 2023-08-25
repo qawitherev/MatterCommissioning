@@ -8,8 +8,8 @@
 import Foundation
 import Matter
 
-let newNodeId: NSNumber = 12
 let callbackQueue = DispatchQueue(label: "com.csa.matter.qrcodevc.callback")
+let newNodeId: NSNumber = 12
 
 /*
  setup controller delegate

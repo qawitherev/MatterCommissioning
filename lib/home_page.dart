@@ -1,3 +1,5 @@
+import 'package:commission_mtr2/commission_failed.dart';
+import 'package:commission_mtr2/support_commissioned.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,9 +10,9 @@ import 'constants.dart';
 import 'details_page.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  final HomeController c;
+  HomePage({Key? key}) : c = Get.put(HomeController()), super(key: key);
 
-  final c = Get.put(HomeController());
   static const verS10 = SizedBox(
     height: 15,
   );
@@ -116,24 +118,33 @@ class HomeController extends GetxController {
     detectionSpeed: DetectionSpeed.normal,
     torchEnabled: false,
   );
+
+  @override
+  void onInit() {
+    super.onInit();
+    print("oninit");
+    sController.start();
+  }
+
   final sBar = const SnackBar(content: Text("Pairing code cannot be empty"),
     duration: Duration(seconds: 2),);
 
   void qrScanned(BarcodeCapture capture) {
     final List<Barcode> barcodes = capture.barcodes;
     final qrString = barcodes[0].rawValue;
-    sController.stop();
+    // sController.stop();
     Get.to(() => DetailsPage(qrString: qrString,));
   }
 
   void pairManual() {
-    if (tController.text.isEmpty) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(sBar);
-      return;
-    }
+    // if (tController.text.isEmpty) {
+    //   ScaffoldMessenger.of(Get.context!).showSnackBar(sBar);
+    //   return;
+    // }
     final manualCode = tController.text;
     sController.stop();
-    Get.to(() => DetailsPage(manualCode: manualCode,));
+    // Get.to(() => DetailsPage(manualCode: manualCode,));
+    Get.to(() => SupportCommissionedPage());
   }
 
   // Future<void> mSupport() async {

@@ -68,6 +68,9 @@ flutter:
 
   assets:
     - assets/lottie/cute_cat.json
+    - assets/lottie/failed_dog.json
+    - assets/lottie/cat_loading.json
+    - assets/lottie/cat_timeout.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -24,7 +24,8 @@
 		F419D9762A8F63350016396C /* MHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419D9752A8F63350016396C /* MHelper.swift */; };
 		F419D9852A9310570016396C /* DefaultUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = F419D9842A9310570016396C /* DefaultUtils.m */; };
 		F419D9892A9311460016396C /* FabricKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = F419D9882A9311460016396C /* FabricKeys.m */; };
-		F419D98C2A95E5BA0016396C /* CommissionHelperNoWifi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419D98B2A95E5BA0016396C /* CommissionHelperNoWifi.swift */; };
+		F419D98C2A95E5BA0016396C /* SupportCommissionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F419D98B2A95E5BA0016396C /* SupportCommissionHelper.swift */; };
+		F45608CC2A98483E0092290E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45608CB2A98483E0092290E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +98,8 @@
 		F419D9872A9311310016396C /* FabricKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FabricKeys.h; sourceTree = "<group>"; };
 		F419D9882A9311460016396C /* FabricKeys.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FabricKeys.m; sourceTree = "<group>"; };
 		F419D98A2A9439050016396C /* MatterExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MatterExtension.entitlements; sourceTree = "<group>"; };
-		F419D98B2A95E5BA0016396C /* CommissionHelperNoWifi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommissionHelperNoWifi.swift; sourceTree = "<group>"; };
+		F419D98B2A95E5BA0016396C /* SupportCommissionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportCommissionHelper.swift; sourceTree = "<group>"; };
+		F45608CB2A98483E0092290E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				F45608CB2A98483E0092290E /* Constants.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -205,7 +208,7 @@
 			children = (
 				F419D93B2A8DBDEB0016396C /* CommissionHelper.swift */,
 				F419D9732A8F5C4A0016396C /* MatterSupport.swift */,
-				F419D98B2A95E5BA0016396C /* CommissionHelperNoWifi.swift */,
+				F419D98B2A95E5BA0016396C /* SupportCommissionHelper.swift */,
 			);
 			path = "Commission Helpers";
 			sourceTree = "<group>";
@@ -419,8 +422,9 @@
 				F419D9362A8DBCC10016396C /* DefaultUtils.m in Sources */,
 				F419D9392A8DBCF70016396C /* FabricKeys.m in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
-				F419D98C2A95E5BA0016396C /* CommissionHelperNoWifi.swift in Sources */,
+				F419D98C2A95E5BA0016396C /* SupportCommissionHelper.swift in Sources */,
 				F419D93C2A8DBDEB0016396C /* CommissionHelper.swift in Sources */,
+				F45608CC2A98483E0092290E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
